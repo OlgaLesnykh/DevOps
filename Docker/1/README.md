@@ -18,4 +18,16 @@ services:
 Проверяем по внешнему ip-адресу ВМ на порту 5555:    
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_002.png)    
 
-2. Запускаем контейнер с помощью docker
+2. Запускаем контейнер с помощью docker    
+Создаем файл Dockerfile с содержимым:
+```
+FROM nginx:1.21.1
+COPY ./custom/index.html /usr/share/nginx/html/index.html
+EXPOSE 80/tcp
+```
+Собираем образ с именем custom-nginx, смотрим список доступных образов, видим тот, который ранее скачали с hub.docker.com и custom-nginx, который собрали только что.    
+Запускаем из образа custom-nginx контейнер с таким же именем custom-nginx, прокидывая порт 80 на хостовой машине на порт 80 в контейнере, Убеждаемся, что контейнер работает и проверяем по внешнему адресу хостовой машины на порту 80:    
+    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_003.png)    
+    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_004.png)    
