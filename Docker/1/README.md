@@ -1,4 +1,4 @@
-# Задание 1
+# Задача 1
 1. Запускаем контейнер с помощью docker compose:
 Создаем файл docker-compose.yml с содержимым:
 ```
@@ -44,9 +44,40 @@ EXPOSE 80/tcp
 
 Единственный момент, который недопоняла, рабочая ссылка на мой образ получилась такая: https://hub.docker.com/layers/olgalesnykh/custom-nginx/1.0.0/images/sha256-35e1fb7d881cd0966470ff65e40a3d1dfda44b6ed1cc5c719c5c130538ac9459?context=explore что не соответствует шаблону, указанному в задании: https://hub.docker.com/<username_repo>/custom-nginx/general 
 Возможно я что-то сделала неправильно, прокомментируйте, пожалуйста.
-# Задание 2
+# Задача 2
 1. ```docker run -d --name lesnykh-custom-nginx-t2 -p 8080:80 olgalesnykh/custom-nginx:1.0.0```
 2. ```docker rename lesnykh-custom-nginx-t2 custom-nginx-t2```
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_007.png)    
     
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_008.png)    
+# Задача 3
+1,2,3
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_009.png)    
+
+Контейнер остановился, вероятно, поскольку команда Ctrl+C передала ему сигнал SIGINT, который прервал процесс.    
+4,5,6 - установка vim завершилась успешно    
+    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_010.png)    
+7,8,9    
+    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_011.png)    
+10    
+Мы поменяли в контейнере порт, на котором работает nginx с 80 на 81. Когда создавали контейнер, прокидывали порт 8080 хоста на 80 порт контейнера, соответственно, логично, что сервер nginx перестал отвечать на порту 8080.   
+    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_012.png)    
+11    
+Попробуем решить эту проблему:
+Останавливаем контейнер и службу docker;    
+Узнаем идентификатор контейнера ```docker inspect --format="{{.Id}}" custom-nginx-t2```;    
+Находим конфигурационные файлы контейнера по идентификатору: ```ls /var/lib/docker/containers/a501901f8c89336f46c3f9a1832f6096f8ebcc0dfb4b6fc3d13c2a5cc8df9496```;    
+Исправляем в файлах hostconfig.json и config.v2.json "80/tcp" на "81/tcp";
+Запускаем docker;
+Запускаем контейнер;
+Пробуем вывод команд из пункта 10 и смотрим страницу в браузере, убеждаемся, что починили.    
+    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_013.png)    
+12    
+Удаляем запущенный контейнер командой ```docker rm -f custom-nginx-t2```    
+    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_014.png)   
+# Задача 4
