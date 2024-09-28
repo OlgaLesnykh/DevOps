@@ -44,3 +44,9 @@ EXPOSE 80/tcp
 
 Единственный момент, который недопоняла, рабочая ссылка на мой образ получилась такая: https://hub.docker.com/layers/olgalesnykh/custom-nginx/1.0.0/images/sha256-35e1fb7d881cd0966470ff65e40a3d1dfda44b6ed1cc5c719c5c130538ac9459?context=explore что не соответствует шаблону, указанному в задании: https://hub.docker.com/<username_repo>/custom-nginx/general 
 Возможно я что-то сделала неправильно, прокомментируйте, пожалуйста.
+# Задание 2
+1. ```docker run -d --name lesnykh-custom-nginx-t2 -p 8080:80 olgalesnykh/custom-nginx:1.0.0```
+2. ```docker rename lesnykh-custom-nginx-t2 custom-nginx-t2```
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_007.png)    
+    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_008.png)    
