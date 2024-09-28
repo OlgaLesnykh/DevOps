@@ -73,7 +73,7 @@ EXPOSE 80/tcp
 Исправляем в файлах hostconfig.json и config.v2.json "80/tcp" на "81/tcp";
 Запускаем docker;
 Запускаем контейнер;
-Пробуем вывод команд из пункта 10 и смотрим страницу в браузере, убеждаемся, что починили.    
+Пробуем вывод команд из пункта 10 и смотрим страницу в браузере, убеждаемся, что починили, радуемся.    
     
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_013.png)    
 12    
@@ -83,3 +83,5 @@ EXPOSE 80/tcp
 # Задача 4
     
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_015.png)   
+# Задача 5
+
