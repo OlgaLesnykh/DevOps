@@ -81,7 +81,28 @@ EXPOSE 80/tcp
     
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_014.png)   
 # Задача 4
+Запускаем два контейнеа только с операционной системой centos и debian, добавляем ключ -t и команду /bin/bash, поскольку если просто запустить контейнер без какого-то процесса внутри, он сразу упадет.    
     
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_015.png)   
 # Задача 5
+1. При выполнении команды ```docker compose up -d``` запустился файл compose.yaml, поскольку имя файла compose.yaml более предпочтительно для docker compose, несмотря на то, что docker-compose.yaml тоже поддерживается.
+    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_016.png)   
+2. Удалим созданный контейнер, отредактируем файл compose.yaml, добавив тут блок include (зависимость от docker-compose.yaml) для того, чтобы запустились оба файла. compose.yaml:    
+```
+version: "3"
+include:
+  - docker-compose.yaml
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    network_mode: host
+    ports:
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+```
+Запустились оба файла:    
+    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_017.png)   
 
