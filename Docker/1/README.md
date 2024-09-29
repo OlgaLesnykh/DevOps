@@ -109,4 +109,18 @@ services:
 3. Для запушивания образа в локальный реестр присвоим ему тег localhost:5000/, выполняем команду ```docker push localhost:5000/custom-nginx:latest```, успешно.
     
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_018.png)   
-4. 
+4. Заходим по адресу <ip-адрес хоста>:9000 на страницу portainer и придумываем пароль из 12 символов.    
+    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_019.png)   
+5. На вкладке "stacks" с помощью "web editor" успешно деплоим новый компоуз, он появляется в списке:     
+    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_020.png)   
+6. 
+    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_021.png)   
+7. Удаляем файл compose.yaml, выполняем команду ```docker compose up -d```, суть ошибки в том, что найден контейнер task5-portainer-1, для которого отсутствует компоуз файл (который мы удалили), предлагается запустить эту команду с флагом --remove-orphans, чтобы избавиться от подобных контейнеров в проекте. Выполняем ```docker compose up -d --remove-orphans``` В итоге получаем один контейнер task5-registry-1, запущенный из нашего файла docker-compose.yaml.    
+    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_022.png)   
+Удаляем все контейнеры командой ```docker compose down```    
+    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_023.png)   
