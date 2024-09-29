@@ -106,3 +106,7 @@ services:
     
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_017.png)   
 
+3. Для запушивания образа в локальный реестр присвоим ему тег localhost:5000/, выполняем команду ```docker push localhost:5000/custom-nginx:latest```, успешно.
+    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_018.png)   
+4. 
