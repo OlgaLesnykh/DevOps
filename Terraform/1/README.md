@@ -20,3 +20,16 @@
 # Задание 3
 По инструкции с https://opentofu.org/ установила tofu.    
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_007.png)    
+При выполнении команды ```tofu init``` столкнулась с ошибкой ```Could not resolve provider kreuzwerker/docker: could not connect to registry.opentofu.org: failed to request discovery document: 403 Forbidden``` К сожалению, доступ к ресурсу с российских ip заблокирован. Пробую настроить зеркало, в рабочем каталоге создаю файл .tofurc с содержимым:    
+```
+provider_installation {
+  network_mirror {
+    url = "https://terraform-mirror.yandexcloud.net/"
+    include = ["registry.opentofu.org/*/*"]
+  }
+  direct {
+    exclude = ["registry.opentofu.org/*/*"]
+  }
+}
+```
+Повторно выполняю команду ```tofu init```, теперь успешно:    
