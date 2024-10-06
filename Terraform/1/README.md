@@ -15,5 +15,8 @@
 8. docker-образ nginx:latest не был удален, поскольку мы указали опцию ```keep_locally = true``` в коде, если бы параметр имел значение ```false```, образ был бы удален. Выдержка из документации:    
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_005.png)    
 # Задание 2
-Код [здесь](https://github.com/OlgaLesnykh/DevOps/blob/main/Terraform/1/main.tf).    
+Код [здесь](https://github.com/OlgaLesnykh/DevOps/blob/main/Terraform/1/Task_002/main.tf).    
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_006.png)    
+# Задание 3
+По инструкции с https://opentofu.org/ установила tofu.    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_007.png)    
