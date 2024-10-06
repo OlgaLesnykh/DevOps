@@ -20,6 +20,7 @@
 # Задание 3
 По инструкции с https://opentofu.org/ установила tofu.    
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_007.png)    
+В файле main.tf указываю значение ```required_version = ">=1.8.0```, чтобы версия tofu подходила.    
 При выполнении команды ```tofu init``` столкнулась с ошибкой ```Could not resolve provider kreuzwerker/docker: could not connect to registry.opentofu.org: failed to request discovery document: 403 Forbidden``` К сожалению, доступ к ресурсу с российских ip заблокирован. Пробую настроить зеркало, в рабочем каталоге создаю файл .tofurc с содержимым:    
 ```
 provider_installation {
@@ -33,3 +34,10 @@ provider_installation {
 }
 ```
 Повторно выполняю команду ```tofu init```, теперь успешно:    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_008.png)    
+Командой ```tofu apply``` инфраструктура успешно создается:    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_009.png)    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_010.png)    
+Пробую подключиться к удаленному контейнеру и проверить наличие контейнера и переменные, аналогично, как во 2 задании:    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_011.png)    
+Уничтожаю инфраструктуру командой ```tofu destroy```
