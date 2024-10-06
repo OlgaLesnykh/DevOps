@@ -6,7 +6,7 @@
 Ошибка 2: не объявлен образ - ресурс "docker_image" "nginx", для исправления раскомментируем строки, где этот ресурс объявляется;    
 Ошибка 3: отсутствует имя образа (ресурс docker_image), добавляем второй лэйбл "nginx_image" (можно было сделать лэйбл nginx, вероятно изначально он такой и был, поскольку контейнер ссылается на имя nginx (в строке image = docker_image.nginx.image_id) описания контейнера, но тогда имя образа совпадало бы с именем контейнера, думаю, это не очень хорошо, есть риск запутаться по неопытности, пусть они отличаются, так что исправляю еще в описании контейнера: image = docker_image.nginx_image.image_id, );    
 Ошибка 4: неверно указана ссылка на пароль, исправляем на "example_${random_password.random_string.result}";    
-5. Код [здесь](https://github.com/OlgaLesnykh/DevOps/blob/main/Terraform/1/main.tf).    Запускаем ```terraform apply```.    
+5. Код [здесь](https://github.com/OlgaLesnykh/DevOps/blob/main/Terraform/1/Task_001/main.tf).    Запускаем ```terraform apply```.    
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_002.png)    
 6. Меняем имя docker-контейнера в блоке кода на hello_world. Запускаем команду ```terraform apply -auto-approve```. Ключ -auto-approve применяет изменения к инфраструктуре, не запрашивая подтверждения пользователя. Это может быть опасно потерей данных, в частности, в нашем случае контейнер был удален и создан новый с именем hello_world и новым id.
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_003.png)    
