@@ -80,6 +80,6 @@ variable "vm_web_nat" {
 }
 
 variable "vm_web_serial_port_enable" {
-  type        = bool
-  default     = true
+  type        = number
+  default     = 1
 }
