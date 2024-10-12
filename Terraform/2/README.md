@@ -25,7 +25,7 @@
 4. ```"${local.test_map.admin} is ${keys(local.test_map)[0]} for ${local.test_list[2]} server based on OS ${local.servers.production.image} with ${local.servers.production.cpu} vcpu, ${local.servers.production.ram} ${keys(local.servers.production)[3]} and ${tostring(length(local.servers.production.disks))} virtual ${keys(local.servers.production)[1]}"```
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_016.png)    
 # Задание 8
-Предполагаю, что мне не удалось в полной мере выполнить то, что предполагает это задание.
+Предполагаю, что мне не удалось в полной мере выполнить то, что требует это задание.
 Наиболее простой вариант, который мне видится и работает:    
 ```
 variable "test" {
