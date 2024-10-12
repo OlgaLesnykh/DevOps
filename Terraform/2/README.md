@@ -18,3 +18,25 @@
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_015.png)    
 # Задание 6
 Код [здесь](https://github.com/OlgaLesnykh/DevOps/tree/main/Terraform/2/Task_5_6).
+# Задание 7
+1. ```local.test_list[1]```
+2. ```length(local.test_list)```
+3. ```keys(local.test_map)[0]```
+4. ```"${local.test_map.admin} is ${keys(local.test_map)[0]} for ${local.test_list[2]} server based on OS ${local.servers.production.image} with ${local.servers.production.cpu} vcpu, ${local.servers.production.ram} ${keys(local.servers.production)[3]} and ${tostring(length(local.servers.production.disks))} virtual ${keys(local.servers.production)[1]}"```
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_016.png)    
+# Задание 8
+Предполагаю, что мне не удалось в полной мере выполнить то, что предполагает это задание.
+Наиболее простой вариант, который мне видится и работает:    
+```
+variable "test" {
+type = map(any)
+default = { 
+  "dev1" = ["ssh -o 'StrictHostKeyChecking=no' ubuntu@62.84.124.117", "10.0.1.7"]
+  "dev2" = ["ssh -o 'StrictHostKeyChecking=no' ubuntu@84.252.140.88", "10.0.2.29"]
+  "prod1" = ["ssh -o 'StrictHostKeyChecking=no' ubuntu@51.250.2.101", "10.0.1.30"]
+  }
+}
+```
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_017.png)    
+# Задание 9
+Код [здесь](https://github.com/OlgaLesnykh/DevOps/tree/main/Terraform/2/Task_9). После создания инстансов, привязываю внешний ip адрес к каждой машине через консоль управления яндекс, подключаюсь по ssh, создаю пароль для пользователя ubuntu, после чего внешний ip отвязываю. Подключаюсь к серийной консоли каждой машины и проверяю работу шлюза с помощью команды ```ping yandex.ru```, адрес пингуется, при этом извне к машинам подключиться невозможно, значит шлюз настроен верно.
