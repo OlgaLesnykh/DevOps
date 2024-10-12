@@ -38,8 +38,8 @@ resource "yandex_compute_instance" "web_platform" {
     nat       = var.vm_web_nat
   }
   metadata = {
-    serial-port-enable = var.vm_web_serial_port_enable
-    ssh-keys           = "ubuntu:${var.vms_ssh_root_key}"
+    serial-port-enable = var.metadata["vm"].serial-port-enable
+    ssh-keys           = "ubuntu:${var.metadata["vm"].ssh-keys}"
   }
 }
 
@@ -66,7 +66,7 @@ resource "yandex_compute_instance" "db_platform" {
     nat       = var.vm_db_nat
   }
   metadata = {
-    serial-port-enable = var.vm_db_serial_port_enable
-    ssh-keys           = "ubuntu:${var.vms_ssh_root_key}"
+    serial-port-enable = var.metadata["vm"].serial-port-enable
+    ssh-keys           = "ubuntu:${var.metadata["vm"].ssh-keys}"
   }
 }

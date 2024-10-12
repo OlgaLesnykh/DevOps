@@ -61,11 +61,11 @@ variable "project_owner" {
 
 ###ssh vars
 
-variable "vms_ssh_root_key" {
+/*variable "vms_ssh_root_key" {
   type        = string
   default     = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIfmIk9pLPprAdDxEHXwCQ9+Qv7jYChLUTHrjOtbWUTk lesnykh@debian"
   description = "ssh-keygen -t ed25519"
-}
+}*/
 
 ###resource vars
 
@@ -84,7 +84,7 @@ variable "vm_web_platform_id" {
   default     = "standard-v1"
 }
 
-variable "vm_web_cores" {
+/*variable "vm_web_cores" {
   type        = number
   default     = 2
 }
@@ -97,7 +97,7 @@ variable "vm_web_memory" {
 variable "vm_web_core_fraction" {
   type        = number
   default     = 5
-}
+}*/
 
 variable "vm_web_preemptible" {
   type        = bool
@@ -109,10 +109,10 @@ variable "vm_web_nat" {
   default     = true
 }
 
-variable "vm_web_serial_port_enable" {
+/*variable "vm_web_serial_port_enable" {
   type        = number
   default     = 1
-}
+}*/
 
 
 variable "vm_db_name" {
@@ -125,7 +125,7 @@ variable "vm_db_platform_id" {
   default     = "standard-v1"
 }
 
-variable "vm_db_cores" {
+/*variable "vm_db_cores" {
   type        = number
   default     = 2
 }
@@ -138,7 +138,7 @@ variable "vm_db_memory" {
 variable "vm_db_core_fraction" {
   type        = number
   default     = 20
-}
+}*/
 
 variable "vm_db_preemptible" {
   type        = bool
@@ -150,10 +150,10 @@ variable "vm_db_nat" {
   default     = true
 }
 
-variable "vm_db_serial_port_enable" {
+/*variable "vm_db_serial_port_enable" {
   type        = number
   default     = 1
-}
+}*/
 
 
 variable "vms_resources" {
@@ -172,6 +172,19 @@ variable "vms_resources" {
       cores = 2
       memory = 2
       core_fraction = 20
+    }
+  }
+}
+
+variable "metadata" {
+  type = map(object({
+    serial-port-enable  = number
+    ssh-keys  = string
+  }))
+  default = {
+    "vm" = {
+      serial-port-enable  = 1
+      ssh-keys  = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIfmIk9pLPprAdDxEHXwCQ9+Qv7jYChLUTHrjOtbWUTk lesnykh@debian"
     }
   }
 }
