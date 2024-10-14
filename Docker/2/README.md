@@ -1,5 +1,5 @@
 # Задание 1
-Сделала fork репозитория shvirtd-example-python, на основе инструкции из файла README этого репозитория формирую файл Dockerfile.python. Файл Dockerfile.python [здесь](https://github.com/OlgaLesnykh/DevOps/blob/main/Docker/2/Dockerfile.python).Собираю образ с именем task-1-python - успешно.    
+Сделала fork репозитория shvirtd-example-python, на основе инструкции из файла README этого репозитория формирую файл Dockerfile.python. Файл Dockerfile.python [здесь](https://github.com/OlgaLesnykh/DevOps/blob/main/Docker/2/Dockerfile.python). Собираю образ с именем task-1-python - успешно.    
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_024.png)    
 # Задание 2
 Устанавливаю яндекс CLI. выполняю команду:   
@@ -19,3 +19,6 @@
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_026.png)    
 Всего обнаружено 97 уязвимостей, из которых 1 - крическая, и 7 - высокого уровня критичности. Делаю вывод, что безопасность образа требует доработки.
 # Задание 3
+Файл compose.yaml [здесь](https://github.com/OlgaLesnykh/DevOps/blob/main/Docker/2/compose.yaml).    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_027.png)    
+# Задание 4
