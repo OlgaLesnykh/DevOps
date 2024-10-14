@@ -1,8 +1,8 @@
 # Задание 1
-Сделала fork репозитория shvirtd-example-python, на основе инструкции из файла README этого репозитория формирую файл Dockerfile.python. Файл Dockerfile.python [здесь](https://github.com/OlgaLesnykh/DevOps/tree/main/Terraform/2/Task_5_6).Собираю образ с именем task-1-python - успешно.    
+Сделала fork репозитория shvirtd-example-python, на основе инструкции из файла README этого репозитория формирую файл Dockerfile.python. Файл Dockerfile.python [здесь](https://github.com/OlgaLesnykh/DevOps/blob/main/Docker/2/Dockerfile.python).Собираю образ с именем task-1-python - успешно.    
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_024.png)    
 # Задание 2
-Устанавливаю по яндекс CLI. выполняю команду:   
+Устанавливаю яндекс CLI. выполняю команду:   
 ```yc init```    
 Создаю реестр в Container Registry с именем lesnykh-registry:   
 ```yc container registry create --name lesnykh-registry```    
@@ -10,12 +10,12 @@
 ```yc container registry configure-docker```    
 Присваиваю тег своему образу task-1-python:    
 ```docker tag task-1-python cr.yandex/crpr75mnvtdvmv7nuemf/task-1-python```, где
-```crpr75mnvtdvmv7nuemf``` - ip моего реестра.    
+```crpr75mnvtdvmv7nuemf``` - id моего реестра.    
 Запушиваю образ в реестр:    
 ```docker push cr.yandex/crpr75mnvtdvmv7nuemf/task-1-python```    
-Образ появился в консоли управления яндекс клауд:    
+Образ появился в консоли управления яндекс клауд, Выполняю сканирование, анализирую результат:         
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_025.png)    
-Выполняю сканирование, анализирую результат:    
+    
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_026.png)    
 Всего обнаружено 97 уязвимостей, из которых 1 - крическая, и 7 - высокого уровня критичности. Делаю вывод, что безопасность образа требует доработки.
 # Задание 3
