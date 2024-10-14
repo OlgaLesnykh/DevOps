@@ -20,5 +20,6 @@
 Всего обнаружено 97 уязвимостей, из которых 1 - крическая, и 7 - высокого уровня критичности. Делаю вывод, что безопасность образа требует доработки.
 # Задание 3
 Файл compose.yaml [здесь](https://github.com/OlgaLesnykh/DevOps/blob/main/Docker/2/compose.yaml).    
+Сначала расположила в файле compose.yaml сервисы, как в задании, - сначала web, потом db, и база данных никак не хотела подниматься, появлялась ошибка типа ```[ERROR] [MY-013236] [Server] The designated data directory /var/lib/mysql/ is unusable. You can remove all files that the server added to it.``` Не могла понять, откуда в каталоге нового контейнера появились файлы, предположила, что они создаются приложением, ради эксперимента поменяла сервисы местами в compose.yaml, это решило проблему.
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Docker_027.png)    
 # Задание 4
