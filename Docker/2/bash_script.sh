@@ -1,6 +1,6 @@
 #!/bin/bash
-sudo git clone https://github.com/OlgaLesnykh/DevOps/edit/main/Docker/2/shvirtd-example-python /opt/shvirtd-example-python
-cd /opt/shvirtd-example-python
+sudo git clone https://github.com/OlgaLesnykh/shvirtd-python.git /opt/shvirtd-python
+cd /opt/shvirtd-python
 sudo bash -c 'cat << EOF > db.env
 MYSQL_ROOT_PASSWORD="YtReWq4321"
 MYSQL_DATABASE="virtd"
