@@ -1,0 +1,25 @@
+include:
+  - proxy.yaml
+services:
+  db:
+    image: mysql:8
+    env_file:
+      - db.env
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db-1:/var/lib/mysql/
+    restart: on-failure
+    networks:
+      backend:
+        ipv4_address: 172.20.0.10
+  web:
+    image: cr.yandex/crpr75mnvtdvmv7nuemf/task-1-python:latest
+    env_file:
+      - web.env
+    ports:
+      - "5000:5000"
+    restart: on-failure
+    networks:
+        backend:
+          ipv4_address: 172.20.0.5
