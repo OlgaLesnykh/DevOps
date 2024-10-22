@@ -1,0 +1,9 @@
+#cloud-config
+disable_root: true
+users:
+  - name: lesnykh
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC38dL/DZVxAlenZX6StygxP9Z3K7Hq/pd/PdiE4hOdKAF39nzZkreTngyMJlA32IVVFAXm7lJ3F3NSonra40vZpqG6hk8FOAH7bHajuzv67cS1WGFJWU8qlT3AyMUWqVcrGsDt0Wmmh5UgC3l6qaKo8HX79e4/Sjmk4DF5HWFVx8zA23vmva8Qi7i29MZmGksbO5MPtNyjHWuOTXqGBnMlv6JFxptaiFosm5O2GSfH15iW0TivT2O5IctaMYhZKBGRasQJnTLLfXhJlz/UEkg9iWDAoxJdY7OdtwZ/UjX8sZZXBB2+lfvwa6SuBe7ZBFDG0TgBZAdNSkQ5DhoLN3DyAiX0u9y8TFSLXSrktgRvWCD+u71qFMMSj1RfNO3kZPywQLnAS6UOf+3Z3AFeNWUxRqgz7KFlVKbhzly9Canp9H6XGDNOFouIjW/84Kyg3LlaB3lDq2xKH+87VD7ZYGiW/wGkffYEKUohVwnbpsqpvyUorDlCw4CW66OWjcJwr4E= root@debian
