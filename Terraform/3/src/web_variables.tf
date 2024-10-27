@@ -29,7 +29,7 @@ variable "vm_resources" {
 
 variable "vm_nat" {
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "instance_count" {
