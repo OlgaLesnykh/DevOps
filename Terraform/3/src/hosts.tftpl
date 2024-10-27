@@ -16,3 +16,11 @@ ${i["name"]}   ansible_host=${i["network_interface"][0]["nat_ip_address"]} fqdn=
 %{ for i in storages }
 ${i["name"]} ansible_host=${i["network_interface"][0]["nat_ip_address"]} fqdn=${i["fqdn"]}
 %{ endfor ~}
+
+[bastionhost]
+%{for i in bastionhost }
+${i["name"]}   ansible_host=${i["network_interface"][0]["nat_ip_address"]}
+
+[all:vars]
+ansible_ssh_common_args='-o ProxyCommand="ssh -p 22 -W %h:%p -q lesnykh@${i["network_interface"][0]["nat_ip_address"]}"'
+%{endfor}

@@ -3,6 +3,7 @@ resource "local_file" "hosts_templatefile" {
     webservers = yandex_compute_instance.web,
     databases  = yandex_compute_instance.db,
     storages    = [yandex_compute_instance.storage]
+    bastionhost = [yandex_compute_instance.bastion]
     vm_nat = var.vm_nat
   })
 
