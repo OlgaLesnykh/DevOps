@@ -1,8 +1,8 @@
 module "vpc_dev" {
   source       = "./VPC/vpc"
   env_name     = var.vpc_env_name
-  zone = var.zone
-  cidr = var.cidr
+  #zone = var.zone
+  #cidr = var.cidr
 }
 
 module "marketing-vm" {
@@ -11,7 +11,7 @@ module "marketing-vm" {
   env_name       = var.env_name[0]
   network_id     = "${module.vpc_dev.network_id}"
   subnet_zones   = [var.zone]
-  subnet_ids     = ["${module.vpc_dev.subnet_id}"]
+  subnet_ids     = ["${module.vpc_dev.subnet_id["ru-central1-a"]}"]
   instance_name  = var.instance_name[0]
   instance_count = var.instance_count[0]
   image_family   = var.image_family
@@ -34,7 +34,7 @@ module "analytics-vm" {
   env_name       = var.env_name[1]
   network_id     = "${module.vpc_dev.network_id}"
   subnet_zones   = [var.zone]
-  subnet_ids     = ["${module.vpc_dev.subnet_id}"]
+  subnet_ids     = ["${module.vpc_dev.subnet_id["ru-central1-a"]}"]
   instance_name  = var.instance_name[1]
   instance_count = var.instance_count[1]
   image_family   = var.image_family

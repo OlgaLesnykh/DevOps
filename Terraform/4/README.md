@@ -14,3 +14,31 @@
 # Задание 2
 Ресурсы успешно создаются. В output вывожу информацию об id сети и подсети, которые потребуются для обращения к этим ресурсам при описании конфигурации виртуальных машин. Информация о модуле в Terraform console:    
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_036.png)  
+Документация к модулю успешно сформирована и находится [здесь](https://github.com/OlgaLesnykh/DevOps/blob/main/Terraform/4/src/VPC/README.md).
+# Задание 3
+Удаляю из стейта модули vpc и vm:    
+```
+terraform state rm module.vpc_dev.yandex_vpc_network.develop
+terraform state rm module.analytics-vm.yandex_compute_instance.vm[0]
+terraform state rm module.marketing-vm.yandex_compute_instance.vm[0]
+```
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_037.png)  
+Импортирую модули обратно (нужные идентификаторы копирую в консоли управления яндекс):    
+```
+terraform import module.vpc_dev.yandex_vpc_network.develop enptc4799jup794dvrgd
+terraform import module.analytics-vm.yandex_compute_instance.vm[0] fhm1pa7ucr6ktgdg7ub6
+terraform import module.marketing-vm.yandex_compute_instance.vm[0] fhmrttuj5bbl5i55iqqv
+```
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_038.png)    
+Запускаю ```terraform plan```, значимых изменений нет:    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_039.png)  
+# Задание 4
+Дорабатываю модуль vpc_dev: создаю переменную vpc_vars, которая содержит список объектов: зоны доступности, в которых необходимо создать подсети, и соответствующие им cidr. Для ресурса yandex_vpc_subnet добавляю конструкцию for_each и редактирую output - добавляю вывод имени подсети, чтобы было проще обратится к подсети в root-модуле. В root-модуле в описании конфигурации виртуальных машин меняю ```subnet_ids     = ["${module.vpc_dev.subnet_id}"]``` на ```subnet_ids     = ["${module.vpc_dev.subnet_id["ru-central1-a"]}"]``` - не придумала, как написать так, чтобы не было хардкодно, подскажите, пожалуйста, буду благодарна).    
+Запускаю весь проект, все инстансы успешно создаются:    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_041.png)    
+Проверяю подсети в консоли управления яндекс:    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_042.png)    
+И информация о моем модуле из Terraform console:    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_040.png)    
+Документацию для модуля обновила.
+# Задание 5
