@@ -1,5 +1,5 @@
 module "vpc_dev" {
-  source       = "./VPC/vpc"
+  source       = "./VPC"
   env_name     = var.vpc_env_name
   #zone = var.zone
   #cidr = var.cidr

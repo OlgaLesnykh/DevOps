@@ -42,3 +42,8 @@ terraform import module.marketing-vm.yandex_compute_instance.vm[0] fhmrttuj5bbl5
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_040.png)    
 Документацию для модуля обновила.
 # Задание 5
+Код к этому заданию оформила в отдельном [каталоге](https://github.com/OlgaLesnykh/DevOps/blob/main/Terraform/4/src/task_5).    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_043.png)    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_044.png)    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_045.png)    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_046.png)    

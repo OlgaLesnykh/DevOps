@@ -6,12 +6,6 @@ terraform {
   }
   required_version = ">1.8.4"
 }
-locals {
-  labels = length(keys(var.labels)) >0 ? var.labels: {
-    "env"=var.env_name
-    "project"="undefined"
-  }
-}
 #создаем облачную сеть
 resource "yandex_vpc_network" "develop" {
   name = var.vpc_name
@@ -25,4 +19,3 @@ resource "yandex_vpc_subnet" "develop_subnet" {
   network_id     = yandex_vpc_network.develop.id
   v4_cidr_blocks = [each.value.cidr]
 }
-

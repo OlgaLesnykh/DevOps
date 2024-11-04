@@ -7,12 +7,12 @@ variable "vpc_name" {
   default     = "develop"
   description = "VPC network name"
 }
-variable "vpc_subnet_name" {
+/*variable "vpc_subnet_name" {
   type        = string
   default     = "develop-ru-central1-a"
   description = "VPC subnet name"
 }
-/*variable "zone" {
+variable "zone" {
   type        = string
   default     = "ru-central1-a"
   description = "https://cloud.yandex.ru/docs/overview/concepts/geo-scope"
