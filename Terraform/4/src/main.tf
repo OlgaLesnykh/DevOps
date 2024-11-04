@@ -1,29 +1,17 @@
-#создаем облачную сеть
-resource "yandex_vpc_network" "develop" {
-  name = var.vpc_name
-}
-
-#создаем подсеть
-resource "yandex_vpc_subnet" "develop_a" {
-  name           = var.vpc_subnet_name[0]
-  zone           = var.zone[0]
-  network_id     = yandex_vpc_network.develop.id
-  v4_cidr_blocks = var.cidr_a
-}
-
-resource "yandex_vpc_subnet" "develop_b" {
-  name           = var.vpc_subnet_name[1]
-  zone           = var.zone[1]
-  network_id     = yandex_vpc_network.develop.id
-  v4_cidr_blocks = var.cidr_b
+module "vpc_dev" {
+  source       = "./vpc"
+  env_name     = var.vpc_env_name
+  zone = var.zone
+  cidr = var.cidr
 }
 
 module "marketing-vm" {
+  depends_on     = [module.vpc_dev]
   source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
   env_name       = var.env_name[0]
-  network_id     = yandex_vpc_network.develop.id
-  subnet_zones   = var.zone
-  subnet_ids     = [yandex_vpc_subnet.develop_a.id,yandex_vpc_subnet.develop_b.id]
+  network_id     = "${module.vpc_dev.network_id}"
+  subnet_zones   = [var.zone]
+  subnet_ids     = ["${module.vpc_dev.subnet_id}"]
   instance_name  = var.instance_name[0]
   instance_count = var.instance_count[0]
   image_family   = var.image_family
@@ -41,11 +29,12 @@ module "marketing-vm" {
 }
 
 module "analytics-vm" {
+  depends_on     = [module.vpc_dev]
   source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
   env_name       = var.env_name[1]
-  network_id     = yandex_vpc_network.develop.id
-  subnet_zones   = var.zone
-  subnet_ids     = [yandex_vpc_subnet.develop_a.id]
+  network_id     = "${module.vpc_dev.network_id}"
+  subnet_zones   = [var.zone]
+  subnet_ids     = ["${module.vpc_dev.subnet_id}"]
   instance_name  = var.instance_name[1]
   instance_count = var.instance_count[1]
   image_family   = var.image_family

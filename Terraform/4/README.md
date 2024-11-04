@@ -12,3 +12,5 @@
 Требуемый вывод модуля через Terraform console:    
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_035.png)    
 # Задание 2
+Ресурсы успешно создаются. В output вывожу информацию об id сети и подсети, которые потребуются для обращения к этим ресурсам при описании конфигурации виртуальных машин. Информация о модуле в Terraform console:    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_036.png)  
