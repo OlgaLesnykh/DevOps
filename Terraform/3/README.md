@@ -16,7 +16,7 @@
 # Задача 5
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_023.png)    
 
-Исправленный вариант:
+Исправленный вариант: 
 Добавила локальные переменные для ресурсов count и for_each в файле locals.tf. В output объединила словари в список функцией concat. output теперь выводится в виде списка словарей:    
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_029.png)    
 # Задача 6

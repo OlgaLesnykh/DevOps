@@ -53,3 +53,8 @@ terraform import module.marketing-vm.yandex_compute_instance.vm[0] fhmrttuj5bbl5
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_046.png)    
 Меняю значение переменной HA на true, выполняю ```terraform apply```, успешно создается второй хост (в другой подсети и с ролью REPLICA):    
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_047.png)    
+# Задание 6
+Код к этому заданию оформила в отдельном [каталоге](https://github.com/OlgaLesnykh/DevOps/blob/main/Terraform/4/src/task_6).    
+Используя пример из официального яндекс клауд терраформ модуля [https://github.com/terraform-yc-modules/terraform-yc-s3](https://github.com/terraform-yc-modules/terraform-yc-s3), создаю бакет размером 1 Гб - добавляю в файл providers.tf информацию о провайдере aws, создаю уникальное имя бакета с помощью ресурса random_string и задаю размер бакета с помощью переменной max_size (указываю размер в байтах). Бакет успешно создается:    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_048.png)    
+# Задание 7
