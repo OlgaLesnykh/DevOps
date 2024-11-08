@@ -1,7 +1,7 @@
 variable "cluster_name" {
   type    = string
-  default = "example"
   description = "cluster mysql name"
+  default = "example"
 }
 variable "env" {
   type        = string

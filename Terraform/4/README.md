@@ -43,7 +43,13 @@ terraform import module.marketing-vm.yandex_compute_instance.vm[0] fhmrttuj5bbl5
 Документацию для модуля обновила.
 # Задание 5
 Код к этому заданию оформила в отдельном [каталоге](https://github.com/OlgaLesnykh/DevOps/blob/main/Terraform/4/src/task_5).    
+Сначала создаю кластер с одним хостом (значение переменной ```HA = false```), кластер успешно создается:     
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_043.png)    
+Один хост:    
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_044.png)    
+База данных:    
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_045.png)    
+Пользователь:    
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_046.png)    
+Меняю значение переменной HA на true, выполняю ```terraform apply```, успешно создается второй хост (в другой подсети и с ролью REPLICA):    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_047.png)    

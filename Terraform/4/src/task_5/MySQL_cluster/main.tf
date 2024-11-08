@@ -25,7 +25,7 @@ resource "yandex_mdb_mysql_cluster" "example" {
     for_each = (var.ha ? range(var.count_ha) : [1])
     content {
       zone             = element(var.subnet_zones, host.key)
-      subnet_id        = element(local.subnet_ids, host.key)
+      subnet_id        = element(module.vpc_dev.subnet_ids, host.key)
       name             = "${var.cluster_name}-db-host-${host.key + 1}"
       priority         = host.key * 10
       assign_public_ip = var.assign_public_ip
