@@ -58,3 +58,26 @@ terraform import module.marketing-vm.yandex_compute_instance.vm[0] fhmrttuj5bbl5
 Используя пример из официального яндекс клауд терраформ модуля [https://github.com/terraform-yc-modules/terraform-yc-s3](https://github.com/terraform-yc-modules/terraform-yc-s3), создаю бакет размером 1 Гб - добавляю в файл providers.tf информацию о провайдере aws, создаю уникальное имя бакета с помощью ресурса random_string и задаю размер бакета с помощью переменной max_size (указываю размер в байтах). Бакет успешно создается:    
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_048.png)    
 # Задание 7
+Код к этому заданию оформила в отдельном [каталоге](https://github.com/OlgaLesnykh/DevOps/blob/main/Terraform/4/src/task_7).    
+Используя docker-compose.yml в проекте, развернула локально vault:    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_049.png)    
+Авторизовалась в веб-интерфейсе с помощью токена "education" и создала новый секрет по пути http://127.0.0.1:8200/ui/vault/secrets/secret/create Path: example
+secret data key: test_secret_data value: congrats!    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_050.png)    
+Считываю этот секрет с помощью terraform и вывожу его в output:    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_051.png)    
+Теперь необходимо записать новый секрет в vault с помощью terraform. Секрет будет иметь следующие параметры: Path: test
+secret data key: TEST_PASSWORD value: 123gfgtFDfdR@123gfgfhtfsd. Добавлю в файл main.tf ресурс:    
+```
+resource "vault_generic_secret" "vault_test" {
+  path = var.vault_test_path
+  data_json = <<EOT
+{
+  "TEST_PASSWORD": "${var.my_pass}"
+}
+EOT
+}
+```
+Выполняю ```terraform apply``` и проверяю в админке vault, что секрет появился:    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_052.png)    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_053.png)    

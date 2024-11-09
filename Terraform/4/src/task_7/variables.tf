@@ -25,45 +25,15 @@ variable "zone" {
   description = "https://cloud.yandex.ru/docs/overview/concepts/geo-scope"
 }
 
-###resource vars
-
-variable "cluster_name" {
-  type    = string
-  default = "example"
-  description = "cluster mysql name"
-}
-variable "env" {
+variable "vault_address" {
   type        = string
-  default     = "PRESTABLE"
-  description = "environment"
+  default     = "http://127.0.0.1:8200"
 }
-variable "disk_size" {
-  description = "Disk size for hosts"
-  type        = number
-  default     = 20
-}
-variable "resource_preset_id" {
-  description = "Preset for hosts"
-  type        = string
-  default     = "s2.micro"
-}
-variable "db_name" {
-  type    = string
-  default = "test"
-  description = "DB name"
-}
-variable "ha" {
+variable "vault_skip_tls_verify" {
   type        = bool
   default     = true
-  description = "high availability cluster"
 }
-variable "db_user_name" {
-  type    = string
-  default = "app"
-  description = "DB user name"
-}
-variable "db_user_password" {
-  type    = string
-  default = "test123ghgfhfhfghfe5673"
-  description = "DB user name"
+variable "vault_token" {
+  type        = string
+  description = "Vault-token"
 }
