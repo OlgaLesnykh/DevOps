@@ -1,17 +1,25 @@
-module "vpc_dev" {
-  source       = "./VPC"
-  env_name     = var.vpc_env_name
-  #zone = var.zone
-  #cidr = var.cidr
+#module "vpc_dev" {
+#  source       = "./VPC"
+#  env_name     = var.vpc_env_name
+#}
+
+data "terraform_remote_state" "vpc" {
+  backend = "local"
+
+  config = {
+    path = var.remote_state_path
+  }
 }
 
 module "marketing-vm" {
-  depends_on     = [module.vpc_dev]
+#  depends_on     = [module.vpc_dev]
   source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
   env_name       = var.env_name[0]
-  network_id     = "${module.vpc_dev.network_id}"
+#  network_id     = "${module.vpc_dev.network_id}"
+  network_id     = data.terraform_remote_state.vpc.outputs.network_id
   subnet_zones   = [var.zone]
-  subnet_ids     = ["${module.vpc_dev.subnet_ids[0]}"]
+#  subnet_ids     = ["${module.vpc_dev.subnet_ids[0]}"]
+  subnet_ids     = data.terraform_remote_state.vpc.outputs.subnet_ids
   instance_name  = var.instance_name[0]
   instance_count = var.instance_count[0]
   image_family   = var.image_family
@@ -29,12 +37,14 @@ module "marketing-vm" {
 }
 
 module "analytics-vm" {
-  depends_on     = [module.vpc_dev]
+#  depends_on     = [module.vpc_dev]
   source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
   env_name       = var.env_name[1]
-  network_id     = "${module.vpc_dev.network_id}"
+ # network_id     = "${module.vpc_dev.network_id}"
+  network_id     = data.terraform_remote_state.vpc.outputs.network_id
   subnet_zones   = [var.zone]
-  subnet_ids     = ["${module.vpc_dev.subnet_ids[0]}"]
+ # subnet_ids     = ["${module.vpc_dev.subnet_ids[0]}"]
+  subnet_ids     = data.terraform_remote_state.vpc.outputs.subnet_ids
   instance_name  = var.instance_name[1]
   instance_count = var.instance_count[1]
   image_family   = var.image_family

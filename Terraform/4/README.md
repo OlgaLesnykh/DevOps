@@ -81,3 +81,18 @@ EOT
 Выполняю ```terraform apply``` и проверяю в админке vault, что секрет появился:    
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_052.png)    
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_053.png)    
+# Задание 8
+Для отдельного root-модуля для создания VPC создала отдельный [каталог](https://github.com/OlgaLesnykh/DevOps/blob/main/Terraform/4/src/task_8), в файл main.tf перенесла вызов модуля для создания VPC из исходного файла, создала outputs, запустила выполнение командой ```terraform apply```, сеть и подсети в разных зонах успешно создались.   
+Возвращаюсь в исходный файл main.tf, который будет root-модулем для создания ВМ, закомментировала вызов модуля для создания VPC, создала terraform_remote_state с локальным бэкендом:    
+```     
+data "terraform_remote_state" "vpc" {
+  backend = "local"
+
+  config = {
+    path = var.remote_state_path
+  }
+}
+```
+В path указала путь до файла terraform.tfstate root-модуля для создания VPC (./task_8/terraform.tfstate). Отредактировала описания сети и подсети для виртуальных машин (закомментировала старые значения network_id и subnet_ids, которые использовались в предыдущих заданиях, и описала эти параметры заново, используя ссылки на terraform_remote_state. Выполняю ```terraform apply```, виртуальные машины успешно создаются.    
+Запускаю еще раз для скриншота ```terraform apply```(чтобы было видно чтение terraform_remote_state и созданные ресурсы):    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_054.png)    
