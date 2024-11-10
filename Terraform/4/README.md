@@ -33,7 +33,7 @@ terraform import module.marketing-vm.yandex_compute_instance.vm[0] fhmrttuj5bbl5
 Запускаю ```terraform plan```, значимых изменений нет:    
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_039.png)  
 # Задание 4
-Дорабатываю модуль vpc_dev: создаю переменную vpc_vars, которая содержит список объектов: зоны доступности, в которых необходимо создать подсети, и соответствующие им cidr. Для ресурса yandex_vpc_subnet добавляю конструкцию for_each и редактирую output - добавляю вывод имени подсети, чтобы было проще обратится к подсети в root-модуле. В root-модуле в описании конфигурации виртуальных машин меняю ```subnet_ids     = ["${module.vpc_dev.subnet_id}"]``` на ```subnet_ids     = ["${module.vpc_dev.subnet_id["ru-central1-a"]}"]``` - не придумала, как написать так, чтобы не было хардкодно, подскажите, пожалуйста, буду благодарна).    
+Дорабатываю модуль vpc_dev: создаю переменную vpc_vars, которая содержит список объектов: зоны доступности, в которых необходимо создать подсети, и соответствующие им cidr. Для ресурса yandex_vpc_subnet добавляю конструкцию for_each и редактирую output. В root-модуле в описании конфигурации виртуальных машин меняю ```subnet_ids     = ["${module.vpc_dev.subnet_id}"]``` на ```subnet_ids     = ["${module.vpc_dev.subnet_id[0]}"]```.    
 Запускаю весь проект, все инстансы успешно создаются:    
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_041.png)    
 Проверяю подсети в консоли управления яндекс:    
@@ -93,6 +93,6 @@ data "terraform_remote_state" "vpc" {
   }
 }
 ```
-В path указала путь до файла terraform.tfstate root-модуля для создания VPC (./task_8/terraform.tfstate). Отредактировала описания сети и подсети для виртуальных машин (закомментировала старые значения network_id и subnet_ids, которые использовались в предыдущих заданиях, и описала эти параметры заново, используя ссылки на terraform_remote_state. Выполняю ```terraform apply```, виртуальные машины успешно создаются.    
+В path указала путь до файла terraform.tfstate root-модуля для создания VPC (./task_8/terraform.tfstate). Отредактировала описания сети и подсети для виртуальных машин (закомментировала старые значения network_id и subnet_ids, а также зависимости (depends_on), которые использовались в предыдущих заданиях, и описала значения network_id и subnet_ids заново, используя ссылки на terraform_remote_state. Выполняю ```terraform apply```, виртуальные машины успешно создаются.    
 Запускаю еще раз для скриншота ```terraform apply```(чтобы было видно чтение terraform_remote_state и созданные ресурсы):    
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_054.png)    
