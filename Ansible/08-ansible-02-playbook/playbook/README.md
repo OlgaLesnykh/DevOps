@@ -32,5 +32,3 @@ ansible_host=<Elastic/Public IP>
 ## Getting Help
 
 If you find a bug, or have a feature request, please don't hesitate to open an issue in this repository.
-
-## Code of Conduct
