@@ -37,7 +37,7 @@
 # Задание 3
 Исправляю ошибки, найденные с помощью tflint и checkov:    
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_072.png)    
-Pull Request [здесь]().
+Pull Request [здесь](https://github.com/OlgaLesnykh/DevOps/pull/1).
 # Задание 4
 ```    
 variable "ip_address" {
@@ -63,3 +63,5 @@ variable "ip_addresses" {
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_070.png)    
 Некорректный ввод значений по умолчанию:    
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_071.png)    
+
+К сожалению, не успеваю выполнить задания с *, не уверена, что домашняя работа в принципе успеет пройти проверку, т.к. модуль закрывается. В любом случае, в ходе выполнения этой работы я научилась работать со state-файлом, проверять код с помощью tflint и checkov и создала первый в своей жизни Pull Request:) Считаю модуль пройденным успешно и продуктивно)
