@@ -1,10 +1,5 @@
 ###cloud vars
 
-variable "public_key" {
-  type    = string
-  default = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGiVcfW8Wa/DxbBNzmQcwn7hJOj7ji9eoTpFakVnY/AI webinar"
-}
-
 variable "token" {
   type        = string
   description = "OAuth-token; https://cloud.yandex.ru/docs/iam/concepts/authorization/oauth-token"
@@ -30,45 +25,6 @@ variable "zone" {
   description = "https://cloud.yandex.ru/docs/overview/concepts/geo-scope"
 }
 
-variable "cidr" {
-  type        = list(string)
-  default     = ["10.0.1.0/24"]
-  description = "https://cloud.yandex.ru/docs/vpc/operations/subnet-create"
-}
-variable "cidr_b" {
-  type        = list(string)
-  default     = ["10.0.2.0/24"]
-  description = "https://cloud.yandex.ru/docs/vpc/operations/subnet-create"
-}
-variable "vpc_name" {
-  type        = string
-  default     = "develop"
-  description = "VPC network name"
-}
-
-variable "vpc_subnet_name" {
-  type        = list(string)
-  default     = ["develop-ru-central1-a", "develop-ru-central1-b"]
-  description = "VPC subnet name"
-}
-variable "remote_state_path" {
-  type        = string
-  default     = "./task_8/terraform.tfstate"
-}
-variable "shared_credentials_files" {
-  type        = list(string)
-  default     = ["/home/lesnykh/.aws/credentials"]
-}
-variable "shared_config_files" {
-  type        = list(string)
-  default     = ["/home/lesnykh/.aws/config"]
-}
-variable "profile" {
-  type        = string
-  default     = "default"
-}
-
-
 ###resource vars
 
 variable "env_name" {
@@ -92,14 +48,17 @@ variable "image_family" {
 }
 variable "public_ip" {
   type        = list(bool)
-  default     = [true, true]
+  default     = [false, false]
 }
 variable "project" {
   type        = list(string)
   default     = ["marketing", "analytics"]
   description = "Project labels"
 }
-
+variable "security_group_ids" {
+  type        = string
+  default     = "enp5lbojnj5j1g9a9dam"
+}
 ###metadata vars
 
 variable username {

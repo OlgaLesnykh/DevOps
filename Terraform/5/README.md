@@ -30,3 +30,36 @@
 Выполняю ```terraform init```, ```terraform apply```, наблюдаю, что в каталоге, из которого выполняю код, не появился файл tfstate, предполагаю, что всё работает правильно, иду в запросы к документной таблице, выполняю запрос повторно - вижу, что появился новый файл .tfstate, значит всё настроено верно.    
 ![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_067.png)    
 3. Делаю коммит изменений в ветку 'terraform-05'.
+4. Открываю в проекте terraform console, а в другом окне из этой же директории пробую запустить terraform apply - получаю ошибку доступа к state.    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_068.png)    
+4. Разблокирую state ```terraform force-unlock 385c3dcd-281c-2f7c-cacf-78c04a35dd39``` (id взяла из сообщения об ошибке), ```terraform apply``` выполняется успешно:    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_069.png)    
+# Задание 3
+Исправляю ошибки, найденные с помощью tflint и checkov:    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_072.png)    
+Pull Request [здесь]().
+# Задание 4
+```    
+variable "ip_address" {
+  type = string
+  description = "IP-address"
+  default     = "192.168.0.1"
+  validation  {
+    condition = can(regex("^((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])$", var.ip_address))
+    error_message   = "Incorrect IP address format"
+  }
+}
+variable "ip_addresses" {
+  type = list(string)
+  description = "List of IP-address"
+  default     = ["192.168.0.1", "1.1.1.1", "127.0.0.1"]
+  validation  {
+    condition = alltrue([for i in var.ip_addresses: can(regex("^((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])$", i))])
+    error_message   = "Incorrect IP address format"
+  }
+}
+```
+Корректный ввод значений по умолчанию:    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_070.png)    
+Некорректный ввод значений по умолчанию:    
+![](https://github.com/OlgaLesnykh/screenshots/blob/main/Terraform_071.png)    

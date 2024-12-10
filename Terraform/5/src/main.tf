@@ -5,16 +5,16 @@ module "vpc_dev" {
 
 module "marketing-vm" {
   depends_on     = [module.vpc_dev]
-  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
+  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=4d05fab828b1fcae16556a4d167134efca2fccf2"
   env_name       = var.env_name[0]
-  network_id     = "${module.vpc_dev.network_id}"
+  network_id     = module.vpc_dev.network_id
   subnet_zones   = [var.zone]
-  subnet_ids     = ["${module.vpc_dev.subnet_ids[0]}"]
+  subnet_ids     = [module.vpc_dev.subnet_ids[0]]
   instance_name  = var.instance_name[0]
   instance_count = var.instance_count[0]
   image_family   = var.image_family
   public_ip      = var.public_ip[0]
-
+  security_group_ids = [var.security_group_ids]
   labels = { 
     project = var.project[0]
      }
@@ -28,15 +28,16 @@ module "marketing-vm" {
 
 module "analytics-vm" {
   depends_on     = [module.vpc_dev]
-  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
+  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=4d05fab828b1fcae16556a4d167134efca2fccf2"
   env_name       = var.env_name[1]
-  network_id     = "${module.vpc_dev.network_id}"
+  network_id     = module.vpc_dev.network_id
   subnet_zones   = [var.zone]
-  subnet_ids     = ["${module.vpc_dev.subnet_ids[0]}"]
+  subnet_ids     = [module.vpc_dev.subnet_ids[0]]
   instance_name  = var.instance_name[1]
   instance_count = var.instance_count[1]
   image_family   = var.image_family
   public_ip      = var.public_ip[1]
+  security_group_ids = [var.security_group_ids]
 
   labels = { 
     project = var.project[1]

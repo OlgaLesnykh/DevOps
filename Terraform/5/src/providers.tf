@@ -22,6 +22,10 @@ terraform {
     dynamodb_table              = "lesnykh"
   }
   required_providers {
+    template = {
+      source  = "hashicorp/template"
+      version = "~> 2"
+    }
     yandex = {
       source = "yandex-cloud/yandex"
       version = "0.134.0"
