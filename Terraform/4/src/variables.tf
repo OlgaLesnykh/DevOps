@@ -75,7 +75,7 @@ variable "instance_count" {
 }
 variable "image_family" {
   type        = string
-  default     = "ubuntu-2004-lts"
+  default     = "centos-7"
 }
 variable "public_ip" {
   type        = list(bool)
